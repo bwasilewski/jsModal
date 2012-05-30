@@ -3,7 +3,7 @@ var Modal = {
 	modalWrap: $('<div id="modalWrapper"/>')
 	,modalShade: $('<div id="modalShade"/>')
 	,modalContent: $('<div id="modalContent"/>')
-	,closeBtn: $('<a class="close" href="#">Close</a>')
+	,closeBtn: $('<a class="close btn" href="#">Close</a>')
 
 	,initialize: function initialize () {
 		var self = this
@@ -20,6 +20,10 @@ var Modal = {
 		this.closeBtn.bind('click', function (ev) {
 			ev.preventDefault();
 			self.closeClickHandler(ev);
+		});
+
+		this.modalShade.bind('click', function (ev) {
+			self.hideModal();
 		});
 	}
 
