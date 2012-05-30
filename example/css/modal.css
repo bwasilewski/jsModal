@@ -1,0 +1,27 @@
+#modalWrapper {
+	height: 100%;
+	width: 100%;
+
+	display: none;
+}
+
+#modalShade {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: rgba(0,0,0,.5);
+	height: 100%;
+	width: 100%;
+}
+
+#modalContent {
+	background: #fff;
+	width: 570px;
+	position: absolute;
+	padding: 30px;
+}
+
+#modalWrapper.visible {
+	display: block;
+}
+
