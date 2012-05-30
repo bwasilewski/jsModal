@@ -2,30 +2,55 @@ var Modal = {
 
 	modalWrap: $('<div id="modalWrapper"/>')
 	,modalShade: $('<div id="modalShade"/>')
-	,modalContent: $('<div id="modalContent/>')
+	,modalContent: $('<div id="modalContent"/>')
+	,closeBtn: $('<a class="close" href="#">Close</a>')
 
-	,initialize: function () {
-		var body = $('body');
+	,initialize: function initialize () {
+		var self = this
+			,body = $('body');
 
-		this.modalWrap.append(this.modalShade); 
-		this.modalWrap.append(this.modalContent);
+		this.modalContent.append(this.closeBtn);
+
+		this.modalWrap
+			.append(this.modalShade)
+			.append(this.modalContent);
 
 		body.prepend(this.modalWrap);
 
-		// this.modalWrap = modalWrapEl;
-		// this.modalShade = modalShadeEl;
-		// this.modalContent = modalContentEl;
-
-		// bodyEl.insertBefore(modalWrapEl, bodyEl.firstChild);
-		// modalWrapEl.appendChild(modalShadeEl);
-		// modalWrapEl.appendChild(modalContentEl);
+		this.closeBtn.bind('click', function (ev) {
+			ev.preventDefault();
+			self.closeClickHandler(ev);
+		});
 	}
 
-	,showModal: function () {
-		
+	,showModal: function showModal () {
+		this.centerModal();
+		this.modalWrap
+			.css('display','block')
+			.stop()
+			.animate({ opacity: 1 }, 250);
 	}
 
-	,centerModal: function () {
-		
+	,hideModal: function hideModal () {
+		this.modalWrap
+			.stop()
+			.animate({ opacity: 0 }, 250, function () {
+				$(this).css('display', 'none');
+			});
+	}
+
+	,centerModal: function centerModal () {
+		var self = this
+			,windowWidth = parseInt( $(window).width() )
+			,modalWidth = parseInt( this.modalContent.outerWidth() )
+			,xPos = ( windowWidth - modalWidth ) / 2;
+
+		this.modalContent.css('left', xPos);
+	}
+
+	,closeClickHandler: function closeClickHandler (ev) {
+		this.hideModal();
 	}
 };
+
+Modal.initialize();

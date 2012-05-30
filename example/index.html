@@ -42,12 +42,10 @@
 
     var button = document.getElementById('button');
 
-    Modal.initialize();
-
     button.onclick = dosomething;
 
-    function dosomething (e) {
-      console.log(e);
+    function dosomething (ev) {
+      ev.preventDefault();
       Modal.showModal();
     }
 
